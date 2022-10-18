@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "262061240408",
+    "project_id": "kapkool-d6bba",
+    "storage_bucket": "kapkool-d6bba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:262061240408:android:572f17712f7efbfa9cda2d",
+        "android_client_info": {
+          "package_name": "com.example.kapkool"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "262061240408-9c99mbcddjkfaqr1tia5il9dgjroro96.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kapkool",
+            "certificate_hash": "733a2fd6b9aa28471c94066ec24307591fe81742"
+          }
+        },
+        {
+          "client_id": "262061240408-n25lgtrgv32giiphv7kvcv1tovaenjdr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzj8i_4MsJ1RLmHAXZhxOUPjuA5MUBtfs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "262061240408-n25lgtrgv32giiphv7kvcv1tovaenjdr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
