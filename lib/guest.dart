@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:kapkool/Cestun10.dart';
 import 'package:kapkool/Commonservice.dart';
 import 'package:kapkool/Home.dart';
 import 'package:kapkool/Question.dart';
@@ -31,11 +32,15 @@ class _GuestState extends State<Guest> {
                     joueur = value;
                     print(joueur);
                   })),
+          Cestun10(
+              onChangedStep: (indexx, res) => setState(() {
+                    index = indexx;
+                    answer = res;
+                  })),
           Question(
               onChangedStep: (indexx, answerr) => setState(() {
                     index = indexx;
                     answer = answerr;
-                    print(answer);
                   })),
           Roulette(
               onChangedStep: (indexx) => setState(() {

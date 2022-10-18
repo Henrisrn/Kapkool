@@ -15,10 +15,9 @@ class Roulette extends StatefulWidget {
 
 class _RouletteState extends State<Roulette> {
   final selected = BehaviorSubject<int>();
-  int rewards = 0;
-
-  List<int> items = [100, 200, 500, 1000, 2000];
-
+  String rewards = "";
+  List<String> items = ["Hello", "World", "C'est", "moi", "le", "Gradk"];
+  bool tire = false;
   @override
   void dispose() {
     selected.close();
@@ -32,14 +31,17 @@ class _RouletteState extends State<Roulette> {
             appBar: AppBar(
               leading: IconButton(
                 icon: Icon(Icons.arrow_back),
-                onPressed: () => (widget.onChangedStep(1)),
+                onPressed: () =>
+                    (widget.onChangedStep(Random().nextInt(1) + 1)),
               ),
               backgroundColor: Colors.yellow,
               title: const Center(child: Text("Roulette")),
               elevation: 0,
             ),
-            body: Center(
-              child: Column(
+            body: OrientationBuilder(
+                builder: (BuildContext context, Orientation orientation) {
+              return Center(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
@@ -60,13 +62,13 @@ class _RouletteState extends State<Roulette> {
                         onAnimationEnd: () {
                           setState(() {
                             rewards = items[selected.value];
+                            tire = true;
+                            print(rewards);
                           });
                           print(rewards);
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
-                              content: Text("You just won " +
-                                  rewards.toString() +
-                                  " Points!"),
+                              content: Text("Tu viens de gagné : " + rewards),
                             ),
                           );
                         },
@@ -86,13 +88,28 @@ class _RouletteState extends State<Roulette> {
                         width: 120,
                         color: Colors.redAccent,
                         child: Center(
-                          child: Text("SPIN"),
+                          child: Text("Spin"),
                         ),
                       ),
                     ),
-                  ]),
-            )
-            // config the roulette's appearance her
-            ));
+                    SizedBox(
+                      height: 50,
+                    ),
+                    Container(
+                      child: ElevatedButton(
+                          onPressed: tire == false
+                              ? null
+                              : () => {
+                                    (widget.onChangedStep(
+                                        (Random().nextInt(2) + 1)))
+                                  },
+                          child: Text("Next")),
+                      padding: EdgeInsets.only(bottom: 0),
+                    )
+                  ],
+                ),
+              );
+              // config the roulette's appearance her
+            })));
   }
 }
