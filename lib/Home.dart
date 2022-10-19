@@ -17,8 +17,17 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<String> joueur = <String>[];
-  String jj = " ";
+  List<String> joueur = [];
+  String joueur1 = "";
+  String joueur3 = "";
+  String joueur2 = "";
+  String joueur4 = "";
+  String joueur5 = "";
+  String joueur6 = "";
+  String joueur7 = "";
+  String joueur8 = "";
+  String joueur9 = "";
+  String joueur10 = "";
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -40,15 +49,16 @@ class _HomeState extends State<Home> {
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
+                            SizedBox(
+                              height: 10,
+                            ),
                             const Text("Entrez vos joueurs"),
                             const SizedBox(
                               height: 10,
                             ),
                             TextFormField(
-                              onFieldSubmitted: (value) =>
-                                  setState(() => joueur.add(value)),
                               onChanged: (value) =>
-                                  setState(() => joueur.add(value)),
+                                  setState(() => joueur1 = value),
                               decoration: InputDecoration(
                                 hintText: "Joueur n°1",
                                 border: OutlineInputBorder(
@@ -69,9 +79,8 @@ class _HomeState extends State<Home> {
                             TextFormField(
                               //onEditingComplete: (value) => setState(() => joueur.add(value)) ,
                               onChanged: (value) =>
-                                  setState(() => joueur.add(value)),
-                              onFieldSubmitted: (value) =>
-                                  setState(() => joueur.add(value)),
+                                  setState(() => joueur2 = value),
+
                               decoration: InputDecoration(
                                 hintText: "Joueur n°2",
                                 border: OutlineInputBorder(
@@ -91,11 +100,185 @@ class _HomeState extends State<Home> {
                             ),
                             TextFormField(
                               onChanged: (value) =>
-                                  setState(() => joueur.add(value)),
-                              onFieldSubmitted: (value) =>
-                                  setState(() => joueur.add(value)),
+                                  setState(() => joueur3 = value),
                               decoration: InputDecoration(
                                 hintText: "Joueur n°3",
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(40),
+                                    borderSide: BorderSide(
+                                      color: Colors.grey,
+                                    )),
+                                focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(40),
+                                    borderSide: BorderSide(
+                                      color: Colors.grey,
+                                    )),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            TextFormField(
+                              //onEditingComplete: (value) => setState(() => joueur.add(value)) ,
+                              onChanged: (value) =>
+                                  setState(() => joueur4 = value),
+
+                              decoration: InputDecoration(
+                                hintText: "Joueur n°4",
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(40),
+                                    borderSide: BorderSide(
+                                      color: Colors.grey,
+                                    )),
+                                focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(40),
+                                    borderSide: BorderSide(
+                                      color: Colors.grey,
+                                    )),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            TextFormField(
+                              //onEditingComplete: (value) => setState(() => joueur.add(value)) ,
+                              onChanged: (value) =>
+                                  setState(() => joueur5 = value),
+
+                              decoration: InputDecoration(
+                                hintText: "Joueur n°5",
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(40),
+                                    borderSide: BorderSide(
+                                      color: Colors.grey,
+                                    )),
+                                focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(40),
+                                    borderSide: BorderSide(
+                                      color: Colors.grey,
+                                    )),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            TextFormField(
+                              //onEditingComplete: (value) => setState(() => joueur.add(value)) ,
+                              onChanged: (value) =>
+                                  setState(() => joueur2 = value),
+
+                              decoration: InputDecoration(
+                                hintText: "Joueur n°2",
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(40),
+                                    borderSide: BorderSide(
+                                      color: Colors.grey,
+                                    )),
+                                focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(40),
+                                    borderSide: BorderSide(
+                                      color: Colors.grey,
+                                    )),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            TextFormField(
+                              //onEditingComplete: (value) => setState(() => joueur.add(value)) ,
+                              onChanged: (value) =>
+                                  setState(() => joueur6 = value),
+
+                              decoration: InputDecoration(
+                                hintText: "Joueur n°6",
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(40),
+                                    borderSide: BorderSide(
+                                      color: Colors.grey,
+                                    )),
+                                focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(40),
+                                    borderSide: BorderSide(
+                                      color: Colors.grey,
+                                    )),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            TextFormField(
+                              //onEditingComplete: (value) => setState(() => joueur.add(value)) ,
+                              onChanged: (value) =>
+                                  setState(() => joueur7 = value),
+
+                              decoration: InputDecoration(
+                                hintText: "Joueur n°7",
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(40),
+                                    borderSide: BorderSide(
+                                      color: Colors.grey,
+                                    )),
+                                focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(40),
+                                    borderSide: BorderSide(
+                                      color: Colors.grey,
+                                    )),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            TextFormField(
+                              //onEditingComplete: (value) => setState(() => joueur.add(value)) ,
+                              onChanged: (value) =>
+                                  setState(() => joueur8 = value),
+
+                              decoration: InputDecoration(
+                                hintText: "Joueur n°8",
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(40),
+                                    borderSide: BorderSide(
+                                      color: Colors.grey,
+                                    )),
+                                focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(40),
+                                    borderSide: BorderSide(
+                                      color: Colors.grey,
+                                    )),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            TextFormField(
+                              //onEditingComplete: (value) => setState(() => joueur.add(value)) ,
+                              onChanged: (value) =>
+                                  setState(() => joueur9 = value),
+
+                              decoration: InputDecoration(
+                                hintText: "Joueur n°9",
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(40),
+                                    borderSide: BorderSide(
+                                      color: Colors.grey,
+                                    )),
+                                focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(40),
+                                    borderSide: BorderSide(
+                                      color: Colors.grey,
+                                    )),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            TextFormField(
+                              //onEditingComplete: (value) => setState(() => joueur.add(value)) ,
+                              onChanged: (value) =>
+                                  setState(() => joueur10 = value),
+
+                              decoration: InputDecoration(
+                                hintText: "Joueur n°10",
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(40),
                                     borderSide: BorderSide(
@@ -113,6 +296,17 @@ class _HomeState extends State<Home> {
                     Center(
                       child: TextButton(
                         onPressed: () => ({
+                          joueur.add(joueur1),
+                          joueur.add(joueur2),
+                          joueur.add(joueur3),
+                          joueur.add(joueur4),
+                          joueur.add(joueur5),
+                          joueur.add(joueur6),
+                          joueur.add(joueur7),
+                          joueur.add(joueur8),
+                          joueur.add(joueur9),
+                          joueur.add(joueur10),
+                          joueur.removeWhere((element) => element.length == 0),
                           widget.onChangedStep(
                               (Random().nextInt(2) + 1), joueur),
                         }),

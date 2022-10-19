@@ -9,8 +9,9 @@ import 'package:kapkool/Question.dart';
 import 'package:kapkool/Roulette.dart';
 
 class Guest extends StatefulWidget {
-  const Guest({Key? key});
-
+  Guest({Key? key});
+  int compteur = 0;
+  List<String> joueur = <String>[];
   @override
   State<Guest> createState() => _GuestState();
 }
@@ -20,27 +21,32 @@ class _GuestState extends State<Guest> {
   Commonservice commonservice = new Commonservice();
   int index = 0;
   String answer = "";
-  List<String> joueur = [];
   void initState() {
     // ignore: todo
     // TODO: implement initState
     super.initState();
-    commonservice.term.then(((terms) => setState(() => _widget.addAll([
+    commonservice.questio.then(((question) => setState(() => _widget.addAll([
           Home(
               onChangedStep: (indexx, value) => setState(() {
                     index = indexx;
-                    joueur = value;
-                    print(joueur);
+                    widget.joueur = value;
+                    print("Ce que je reçois : " + widget.joueur.toString());
                   })),
           Cestun10(
-              onChangedStep: (indexx, res) => setState(() {
+              compteur: widget.compteur,
+              quest: question.elementAt(0),
+              onChangedStep: (indexx, res, cpp) => setState(() {
                     index = indexx;
                     answer = res;
+                    widget.compteur = cpp + 1;
                   })),
           Question(
-              onChangedStep: (indexx, answerr) => setState(() {
+              compteur: widget.compteur,
+              question: question.elementAt(1),
+              onChangedStep: (indexx, answerr, cpp) => setState(() {
                     index = indexx;
                     answer = answerr;
+                    widget.compteur = cpp + 1;
                   })),
           Roulette(
               onChangedStep: (indexx) => setState(() {
@@ -51,6 +57,7 @@ class _GuestState extends State<Guest> {
 
   @override
   Widget build(BuildContext context) {
+    widget.compteur++;
     return Container(
       child: _widget.length == 0
           ? SafeArea(

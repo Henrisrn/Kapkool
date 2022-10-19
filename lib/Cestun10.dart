@@ -4,8 +4,14 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class Cestun10 extends StatefulWidget {
-  final Function(int, String) onChangedStep;
-  const Cestun10({super.key, required this.onChangedStep});
+  final Function(int, String, int) onChangedStep;
+  final int compteur;
+  final String quest;
+  Cestun10(
+      {super.key,
+      required this.onChangedStep,
+      required this.quest,
+      required this.compteur});
 
   @override
   State<Cestun10> createState() => _Cestun10State();
@@ -14,16 +20,18 @@ class Cestun10 extends StatefulWidget {
 class _Cestun10State extends State<Cestun10> {
   @override
   String res = "";
+
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
               leading: IconButton(
                 icon: Icon(Icons.arrow_back),
-                onPressed: () => (widget.onChangedStep(0, res)),
+                onPressed: () =>
+                    (widget.onChangedStep(0, res, widget.compteur)),
               ),
               backgroundColor: Colors.yellow[400],
-              title: const Center(child: Text("Question")),
+              title: const Center(child: Text("C'est un 10 mais : ")),
               elevation: 0,
             ),
             body: OrientationBuilder(
@@ -32,9 +40,9 @@ class _Cestun10State extends State<Cestun10> {
                 SizedBox(
                   height: 100,
                 ),
-                Center(child: Text("QUESTION N ° 222222222")),
+                Center(child: Text("C'est un 10 MAIS ")),
                 SizedBox(height: 50),
-                Text("METTRE QUESTION ISSU DE LA BDD"),
+                Text(widget.quest),
                 SizedBox(
                   height: 250,
                 ),
@@ -46,7 +54,8 @@ class _Cestun10State extends State<Cestun10> {
                       children: [
                         ElevatedButton(
                           onPressed: () => ({
-                            widget.onChangedStep(3, res = "Je prends"),
+                            widget.onChangedStep(
+                                3, res = "Je prends", widget.compteur + 1),
                           }),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.yellow,
@@ -61,7 +70,8 @@ class _Cestun10State extends State<Cestun10> {
                         ),
                         ElevatedButton(
                           onPressed: () => ({
-                            widget.onChangedStep(3, res = "Je prends pas"),
+                            widget.onChangedStep(
+                                3, res = "Je prends pas", widget.compteur + 1),
                           }),
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.yellow),
