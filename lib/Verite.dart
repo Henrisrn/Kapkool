@@ -1,21 +1,21 @@
 import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class Actionouverite extends StatefulWidget {
-  final Function(int, String, int) onChangedStep;
-  final int compteur;
-  const Actionouverite(
-      {super.key, required this.onChangedStep, required this.compteur});
+class Verite extends StatefulWidget {
+  final Function(int) onChangedStep;
+  final List<String> question;
+  const Verite(
+      {super.key, required this.onChangedStep, required this.question});
 
   @override
-  State<Actionouverite> createState() => _ActionouveriteState();
+  State<Verite> createState() => _VeriteState();
 }
 
-class _ActionouveriteState extends State<Actionouverite> {
-  String answer = "";
+class _VeriteState extends State<Verite> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -23,11 +23,10 @@ class _ActionouveriteState extends State<Actionouverite> {
           appBar: AppBar(
             leading: IconButton(
               icon: Icon(Icons.arrow_back),
-              onPressed: () =>
-                  (widget.onChangedStep(0, answer, widget.compteur)),
+              onPressed: () => (widget.onChangedStep(5)),
             ),
             backgroundColor: Colors.yellow[400],
-            title: const Center(child: Text("Action ou verité")),
+            title: const Center(child: Text("VERITE")),
             elevation: 0,
           ),
           body: OrientationBuilder(
@@ -37,9 +36,11 @@ class _ActionouveriteState extends State<Actionouverite> {
                 SizedBox(
                   height: 100,
                 ),
-                Center(child: Text("Action ou verité ")),
+                Center(
+                  child: Text(widget.question
+                      .elementAt((Random().nextInt(widget.question.length)))),
+                ),
                 SizedBox(height: 50),
-                Text("Choisi ACTION ou VERITE"),
                 SizedBox(
                   height: 250,
                 ),
@@ -51,14 +52,13 @@ class _ActionouveriteState extends State<Actionouverite> {
                         children: [
                           ElevatedButton(
                             onPressed: () => ({
-                              widget.onChangedStep(
-                                  7, answer = "Action", widget.compteur + 1),
+                              widget.onChangedStep(6),
                             }),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.yellow,
                             ),
                             child: Text(
-                              "Action".toUpperCase(),
+                              "Tu fais l'action".toUpperCase(),
                               style: TextStyle(
                                 color: Colors.white,
                                 backgroundColor: Colors.yellow,
@@ -67,13 +67,12 @@ class _ActionouveriteState extends State<Actionouverite> {
                           ),
                           ElevatedButton(
                             onPressed: () => ({
-                              widget.onChangedStep(
-                                  8, answer = "Vérité", widget.compteur + 1),
+                              widget.onChangedStep(6),
                             }),
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.yellow),
                             child: Text(
-                              "Vérité".toUpperCase(),
+                              "Tu NE fais pas l'action".toUpperCase(),
                               style: TextStyle(
                                 color: Colors.white,
                                 backgroundColor: Colors.yellow,

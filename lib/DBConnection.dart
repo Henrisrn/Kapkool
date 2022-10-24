@@ -3,23 +3,27 @@ import 'dart:developer';
 import 'package:mongo_dart/mongo_dart.dart' show Db, DbCollection;
 
 class DBConnection {
-  String aa = "";
-  DBConnection(String a) {
+  List<String> aa = [];
+  List<List<String>> ba = [];
+  DBConnection(List<String> a) {
     aa = a;
   }
-  Future<List<String>> get dbconnect async {
+  Future<List<List<String>>> get dbconnect async {
     var db = await Db.create(
         "mongodb+srv://test:test@cluster0.pfcsyrs.mongodb.net/Phraseapplication?retryWrites=true&w=majority");
     await db.open();
     inspect(db);
     print("Connected to db");
+    List<List<String>> res = [];
 
-    var collection = db.collection(aa);
-    List<String> sortie = [];
-
-    var information = await collection.find().toList();
-    for (var i in information) {
-      sortie.add(i["phrase"]);
+    for (int i = 0; i < aa.length; i++) {
+      var collection = db.collection(aa.elementAt(i));
+      List<String> sortie = [];
+      var information = await collection.find().toList();
+      for (var i in information) {
+        sortie.add(i["phrase"]);
+      }
+      res.add(sortie);
     }
 
     /*
@@ -53,6 +57,7 @@ class DBConnection {
 
     // or Standard way
     await db.close();
-    return sortie;
+    ba = res;
+    return res;
   }
 }

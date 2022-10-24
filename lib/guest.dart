@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:kapkool/Action.dart';
 import 'package:kapkool/Actionouverite.dart';
 import 'package:kapkool/Cestun10.dart';
 import 'package:kapkool/Commonservice.dart';
@@ -11,6 +12,7 @@ import 'package:kapkool/Jenaijamais.dart';
 import 'package:kapkool/Question.dart';
 import 'package:kapkool/QuiPourrait.dart';
 import 'package:kapkool/Roulette.dart';
+import 'package:kapkool/Verite.dart';
 import 'package:kapkool/classaction.dart';
 
 class Guest extends StatefulWidget {
@@ -25,26 +27,22 @@ class _GuestState extends State<Guest> {
   final List<Widget> _widget = [];
   Commonservice commonservice = new Commonservice();
   int index = 0;
+  List<String> collec = [
+    "Cestun10mais",
+    "Action",
+    "Verite",
+    "Jenaijamais",
+    "Quipourrait",
+    "Cap"
+  ];
 
   String answer = "";
   void initState() {
     // ignore: todo
     // TODO: implement initState
     super.initState();
-    List<List<String>> ques = [];
-    DBConnection cestun10 = new DBConnection("Cestun10mais");
-    cestun10.dbconnect.then((value) => print(value));
-    DBConnection action = new DBConnection("Action");
-    action.dbconnect.then((value) => print(value));
-    DBConnection verite = new DBConnection("Verite");
-    verite.dbconnect.then((value) => print(value));
-    DBConnection jenaijamais = new DBConnection("Jenaijamais");
-    jenaijamais.dbconnect.then((value) => print(value));
-    DBConnection quipourrait = new DBConnection("Quipourrait");
-    quipourrait.dbconnect.then((value) => print(value));
-    DBConnection cap = new DBConnection("Cap");
-    cap.dbconnect.then((value) => print(value));
-    commonservice.questio.then(((question) => setState(() => _widget.addAll([
+    DBConnection coll = new DBConnection(collec);
+    coll.dbconnect.then(((question) => setState(() => _widget.addAll([
           Home(
               onChangedStep: (indexx, value) => setState(() {
                     index = indexx;
@@ -53,7 +51,7 @@ class _GuestState extends State<Guest> {
                   })),
           Cestun10(
               compteur: widget.compteur,
-              quest: question,
+              quest: question.elementAt(0),
               onChangedStep: (indexx, res, cpp) => setState(() {
                     index = indexx;
                     answer = res;
@@ -61,7 +59,7 @@ class _GuestState extends State<Guest> {
                   })),
           Question(
               compteur: widget.compteur,
-              question: question,
+              question: question.elementAt(5),
               onChangedStep: (indexx, answerr, cpp) => setState(() {
                     index = indexx;
                     answer = answerr;
@@ -69,7 +67,7 @@ class _GuestState extends State<Guest> {
                   })),
           QuiPourrait(
               compteur: widget.compteur,
-              question: question,
+              question: question.elementAt(4),
               onChangedStep: (indexx, answerr, cpp) => setState(() {
                     index = indexx;
                     answer = answerr;
@@ -77,7 +75,7 @@ class _GuestState extends State<Guest> {
                   })),
           Jenaijamais(
               compteur: widget.compteur,
-              question: question,
+              question: question.elementAt(3),
               onChangedStep: (indexx, answerr, cpp) => setState(() {
                     index = indexx;
                     answer = answerr;
@@ -94,6 +92,16 @@ class _GuestState extends State<Guest> {
               onChangedStep: (indexx) => setState(() {
                     index = indexx;
                   })),
+          Actionnio(
+              onChangedStep: (indexx) => setState(() {
+                    index = indexx;
+                  }),
+              question: question.elementAt(1)),
+          Verite(
+              onChangedStep: (indexx) => setState(() {
+                    index = indexx;
+                  }),
+              question: question.elementAt(2)),
         ]))));
   }
 
