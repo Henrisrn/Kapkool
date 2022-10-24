@@ -1,26 +1,22 @@
 import 'dart:math';
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class Question extends StatefulWidget {
+class Actionouverite extends StatefulWidget {
   final Function(int, String, int) onChangedStep;
-  final List<String> question;
   final int compteur;
-  const Question(
-      {super.key,
-      required this.onChangedStep,
-      required this.question,
-      required this.compteur});
+  const Actionouverite(
+      {super.key, required this.onChangedStep, required this.compteur});
 
   @override
-  State<Question> createState() => _QuestionState();
+  State<Actionouverite> createState() => _ActionouveriteState();
 }
 
-class _QuestionState extends State<Question> {
-  @override
+class _ActionouveriteState extends State<Actionouverite> {
   String answer = "";
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -31,7 +27,7 @@ class _QuestionState extends State<Question> {
                   (widget.onChangedStep(0, answer, widget.compteur)),
             ),
             backgroundColor: Colors.yellow[400],
-            title: const Center(child: Text("CAP OU PAS CAP")),
+            title: const Center(child: Text("Action ou verité")),
             elevation: 0,
           ),
           body: OrientationBuilder(
@@ -41,10 +37,9 @@ class _QuestionState extends State<Question> {
                 SizedBox(
                   height: 100,
                 ),
-                Center(child: Text("CAP OU PAS CAP")),
+                Center(child: Text("Action ou verité ")),
                 SizedBox(height: 50),
-                Text(widget.question
-                    .elementAt((Random().nextInt(widget.question.length)))),
+                Text("Choisi ACTION ou VERITE"),
                 SizedBox(
                   height: 250,
                 ),
@@ -57,7 +52,7 @@ class _QuestionState extends State<Question> {
                           ElevatedButton(
                             onPressed: () => ({
                               widget.onChangedStep(
-                                  6, answer = "Pas Cap", widget.compteur + 1),
+                                  7, answer = "Action", widget.compteur + 1),
                             }),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.yellow,
@@ -73,7 +68,7 @@ class _QuestionState extends State<Question> {
                           ElevatedButton(
                             onPressed: () => ({
                               widget.onChangedStep(
-                                  3, answer = "Cap", widget.compteur + 1),
+                                  7, answer = "Vérité", widget.compteur + 1),
                             }),
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.yellow),

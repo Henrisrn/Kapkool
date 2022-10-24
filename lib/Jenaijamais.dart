@@ -1,26 +1,25 @@
 import 'dart:math';
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class Question extends StatefulWidget {
+class Jenaijamais extends StatefulWidget {
   final Function(int, String, int) onChangedStep;
   final List<String> question;
   final int compteur;
-  const Question(
+  const Jenaijamais(
       {super.key,
       required this.onChangedStep,
       required this.question,
       required this.compteur});
-
   @override
-  State<Question> createState() => _QuestionState();
+  State<Jenaijamais> createState() => _JenaijamaisState();
 }
 
-class _QuestionState extends State<Question> {
-  @override
+class _JenaijamaisState extends State<Jenaijamais> {
   String answer = "";
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -31,7 +30,7 @@ class _QuestionState extends State<Question> {
                   (widget.onChangedStep(0, answer, widget.compteur)),
             ),
             backgroundColor: Colors.yellow[400],
-            title: const Center(child: Text("CAP OU PAS CAP")),
+            title: const Center(child: Text("Je n'ai jamais :")),
             elevation: 0,
           ),
           body: OrientationBuilder(
@@ -41,10 +40,11 @@ class _QuestionState extends State<Question> {
                 SizedBox(
                   height: 100,
                 ),
-                Center(child: Text("CAP OU PAS CAP")),
+                Center(
+                  child: Text(widget.question
+                      .elementAt((Random().nextInt(widget.question.length)))),
+                ),
                 SizedBox(height: 50),
-                Text(widget.question
-                    .elementAt((Random().nextInt(widget.question.length)))),
                 SizedBox(
                   height: 250,
                 ),
@@ -57,7 +57,7 @@ class _QuestionState extends State<Question> {
                           ElevatedButton(
                             onPressed: () => ({
                               widget.onChangedStep(
-                                  6, answer = "Pas Cap", widget.compteur + 1),
+                                  3, answer = "Pas Cap", widget.compteur + 1),
                             }),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.yellow,
@@ -73,7 +73,7 @@ class _QuestionState extends State<Question> {
                           ElevatedButton(
                             onPressed: () => ({
                               widget.onChangedStep(
-                                  3, answer = "Cap", widget.compteur + 1),
+                                  6, answer = "Cap", widget.compteur + 1),
                             }),
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.yellow),

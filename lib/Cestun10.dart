@@ -1,12 +1,16 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:kapkool/DBConnection.dart';
 
 class Cestun10 extends StatefulWidget {
   final Function(int, String, int) onChangedStep;
   final int compteur;
-  final String quest;
+
+  final List<String> quest;
   Cestun10(
       {super.key,
       required this.onChangedStep,
@@ -20,7 +24,6 @@ class Cestun10 extends StatefulWidget {
 class _Cestun10State extends State<Cestun10> {
   @override
   String res = "";
-
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
@@ -42,7 +45,8 @@ class _Cestun10State extends State<Cestun10> {
                 ),
                 Center(child: Text("C'est un 10 MAIS ")),
                 SizedBox(height: 50),
-                Text(widget.quest),
+                Text(widget.quest
+                    .elementAt((Random().nextInt(widget.quest.length)))),
                 SizedBox(
                   height: 250,
                 ),
@@ -71,7 +75,7 @@ class _Cestun10State extends State<Cestun10> {
                         ElevatedButton(
                           onPressed: () => ({
                             widget.onChangedStep(
-                                3, res = "Je prends pas", widget.compteur + 1),
+                                6, res = "Je prends pas", widget.compteur + 1),
                           }),
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.yellow),

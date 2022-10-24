@@ -16,7 +16,21 @@ class Roulette extends StatefulWidget {
 class _RouletteState extends State<Roulette> {
   final selected = BehaviorSubject<int>();
   String rewards = "";
-  List<String> items = ["Hello", "World", "C'est", "moi", "le", "Gradk"];
+  List<String> items = [
+    "2 gorgés",
+    "2 gorgés",
+    "2 gorgés",
+    "3 gorgés",
+    "3 gorgés",
+    "3 gorgés",
+    "1 gorgé",
+    "1 gorgé",
+    "1 gorgé",
+    "1 shot",
+    "1 shot",
+    "2 shot",
+    "1 cul sec"
+  ];
   bool tire = false;
   @override
   void dispose() {
@@ -32,7 +46,7 @@ class _RouletteState extends State<Roulette> {
               leading: IconButton(
                 icon: Icon(Icons.arrow_back),
                 onPressed: () =>
-                    (widget.onChangedStep(Random().nextInt(1) + 1)),
+                    (widget.onChangedStep(Random().nextInt(5) + 1)),
               ),
               backgroundColor: Colors.yellow,
               title: const Center(child: Text("Roulette")),
@@ -52,12 +66,19 @@ class _RouletteState extends State<Roulette> {
                         selected: selected.stream,
                         animateFirst: false,
                         items: [
-                          FortuneItem(child: Text("Hello")),
-                          FortuneItem(child: Text("Wotld")),
-                          FortuneItem(child: Text("C'est")),
-                          FortuneItem(child: Text("Moi")),
-                          FortuneItem(child: Text("Le")),
-                          FortuneItem(child: Text("Grajd")),
+                          FortuneItem(child: Text("2 gorgés")),
+                          FortuneItem(child: Text("2 gorgés")),
+                          FortuneItem(child: Text("3 gorgés")),
+                          FortuneItem(child: Text("3 gorgés")),
+                          FortuneItem(child: Text("3 gorgés")),
+                          FortuneItem(child: Text("1 gorgé")),
+                          FortuneItem(child: Text("1 gorgé")),
+                          FortuneItem(child: Text("1 gorgé")),
+                          FortuneItem(child: Text("1 shot")),
+                          FortuneItem(child: Text("1 shot")),
+                          FortuneItem(child: Text("2 shots")),
+                          FortuneItem(child: Text("1 cul sec")),
+                          FortuneItem(child: Text("2 gorgés")),
                         ],
                         onAnimationEnd: () {
                           setState(() {

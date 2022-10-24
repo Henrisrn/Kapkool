@@ -308,7 +308,7 @@ class _HomeState extends State<Home> {
                           joueur.add(joueur10),
                           joueur.removeWhere((element) => element.length == 0),
                           widget.onChangedStep(
-                              (Random().nextInt(2) + 1), joueur),
+                              (Random().nextInt(5) + 1), joueur),
                         }),
                         style: ElevatedButton.styleFrom(
                             primary: Theme.of(context).primaryColor,
