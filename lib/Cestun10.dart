@@ -9,13 +9,15 @@ import 'package:kapkool/DBConnection.dart';
 class Cestun10 extends StatefulWidget {
   final Function(int, String, int) onChangedStep;
   final int compteur;
-
+  final List<String> Nomjoueur;
   final List<String> quest;
+
   Cestun10(
       {super.key,
       required this.onChangedStep,
       required this.quest,
-      required this.compteur});
+      required this.compteur,
+      required this.Nomjoueur});
 
   @override
   State<Cestun10> createState() => _Cestun10State();
@@ -25,6 +27,7 @@ class _Cestun10State extends State<Cestun10> {
   @override
   String res = "";
   Widget build(BuildContext context) {
+    print(widget.Nomjoueur);
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
@@ -34,7 +37,7 @@ class _Cestun10State extends State<Cestun10> {
                     (widget.onChangedStep(0, res, widget.compteur)),
               ),
               backgroundColor: Colors.yellow[400],
-              title: const Center(child: Text("C'est un 10 mais : ")),
+              title: const Center(child: Text("  C'est un 10 mais : ")),
               elevation: 0,
             ),
             body: OrientationBuilder(
@@ -43,7 +46,10 @@ class _Cestun10State extends State<Cestun10> {
                 SizedBox(
                   height: 100,
                 ),
-                Center(child: Text("C'est un 10 MAIS ")),
+                Center(
+                    child: Text(widget.Nomjoueur.elementAt(
+                            Random().nextInt(widget.Nomjoueur.length)) +
+                        "C'est un 10 MAIS ")),
                 SizedBox(height: 50),
                 Text(widget.quest
                     .elementAt((Random().nextInt(widget.quest.length)))),
@@ -59,7 +65,7 @@ class _Cestun10State extends State<Cestun10> {
                         ElevatedButton(
                           onPressed: () => ({
                             widget.onChangedStep(
-                                3, res = "Je prends", widget.compteur + 1),
+                                6, res = "Je prends", widget.compteur + 1),
                           }),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.yellow,

@@ -5,7 +5,6 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:kapkool/Action.dart';
 import 'package:kapkool/Actionouverite.dart';
 import 'package:kapkool/Cestun10.dart';
-import 'package:kapkool/Commonservice.dart';
 import 'package:kapkool/DBConnection.dart';
 import 'package:kapkool/Home.dart';
 import 'package:kapkool/Jenaijamais.dart';
@@ -13,19 +12,17 @@ import 'package:kapkool/Question.dart';
 import 'package:kapkool/QuiPourrait.dart';
 import 'package:kapkool/Roulette.dart';
 import 'package:kapkool/Verite.dart';
-import 'package:kapkool/classaction.dart';
 
 class Guest extends StatefulWidget {
   Guest({Key? key});
   int compteur = 0;
-  List<String> joueur = <String>[];
+
   @override
   State<Guest> createState() => _GuestState();
 }
 
 class _GuestState extends State<Guest> {
   final List<Widget> _widget = [];
-  Commonservice commonservice = new Commonservice();
   int index = 0;
   List<String> collec = [
     "Cestun10mais",
@@ -35,22 +32,23 @@ class _GuestState extends State<Guest> {
     "Quipourrait",
     "Cap"
   ];
-
+  List<String> joueur = ["Henri"];
   String answer = "";
   void initState() {
     // ignore: todo
     // TODO: implement initState
     super.initState();
+
     DBConnection coll = new DBConnection(collec);
     coll.dbconnect.then(((question) => setState(() => _widget.addAll([
           Home(
               onChangedStep: (indexx, value) => setState(() {
                     index = indexx;
-                    widget.joueur = value;
-                    print("Ce que je reçois : " + widget.joueur.toString());
+                    joueur = value;
                   })),
           Cestun10(
               compteur: widget.compteur,
+              Nomjoueur: joueur,
               quest: question.elementAt(0),
               onChangedStep: (indexx, res, cpp) => setState(() {
                     index = indexx;
@@ -59,6 +57,7 @@ class _GuestState extends State<Guest> {
                   })),
           Question(
               compteur: widget.compteur,
+              Nomjoueur: joueur,
               question: question.elementAt(5),
               onChangedStep: (indexx, answerr, cpp) => setState(() {
                     index = indexx;
@@ -67,6 +66,7 @@ class _GuestState extends State<Guest> {
                   })),
           QuiPourrait(
               compteur: widget.compteur,
+              Nomjoueur: joueur,
               question: question.elementAt(4),
               onChangedStep: (indexx, answerr, cpp) => setState(() {
                     index = indexx;
@@ -75,6 +75,7 @@ class _GuestState extends State<Guest> {
                   })),
           Jenaijamais(
               compteur: widget.compteur,
+              Nomjoueur: joueur,
               question: question.elementAt(3),
               onChangedStep: (indexx, answerr, cpp) => setState(() {
                     index = indexx;
@@ -83,6 +84,7 @@ class _GuestState extends State<Guest> {
                   })),
           Actionouverite(
               compteur: widget.compteur,
+              Nomjoueur: joueur,
               onChangedStep: (indexx, answerr, cpp) => setState(() {
                     index = indexx;
                     answer = answerr;

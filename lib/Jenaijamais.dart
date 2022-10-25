@@ -8,11 +8,13 @@ class Jenaijamais extends StatefulWidget {
   final Function(int, String, int) onChangedStep;
   final List<String> question;
   final int compteur;
+  final List<String> Nomjoueur;
   const Jenaijamais(
       {super.key,
       required this.onChangedStep,
       required this.question,
-      required this.compteur});
+      required this.compteur,
+      required this.Nomjoueur});
   @override
   State<Jenaijamais> createState() => _JenaijamaisState();
 }
@@ -21,6 +23,7 @@ class _JenaijamaisState extends State<Jenaijamais> {
   String answer = "";
   @override
   Widget build(BuildContext context) {
+    print(widget.Nomjoueur);
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
@@ -30,7 +33,7 @@ class _JenaijamaisState extends State<Jenaijamais> {
                   (widget.onChangedStep(0, answer, widget.compteur)),
             ),
             backgroundColor: Colors.yellow[400],
-            title: const Center(child: Text("Je n'ai jamais :")),
+            title: const Center(child: Text("  Je n'ai jamais :")),
             elevation: 0,
           ),
           body: OrientationBuilder(
@@ -41,8 +44,11 @@ class _JenaijamaisState extends State<Jenaijamais> {
                   height: 100,
                 ),
                 Center(
-                  child: Text(widget.question
-                      .elementAt((Random().nextInt(widget.question.length)))),
+                  child: Text(widget.Nomjoueur.elementAt(
+                          Random().nextInt(widget.Nomjoueur.length)) +
+                      " tu n'as jamais " +
+                      widget.question.elementAt(
+                          (Random().nextInt(widget.question.length)))),
                 ),
                 SizedBox(height: 50),
                 SizedBox(
@@ -57,13 +63,13 @@ class _JenaijamaisState extends State<Jenaijamais> {
                           ElevatedButton(
                             onPressed: () => ({
                               widget.onChangedStep(
-                                  3, answer = "Pas Cap", widget.compteur + 1),
+                                  3, answer = "J'ai déjà", widget.compteur + 1),
                             }),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.yellow,
                             ),
                             child: Text(
-                              "Pas Cap".toUpperCase(),
+                              "J'ai déjà".toUpperCase(),
                               style: TextStyle(
                                 color: Colors.white,
                                 backgroundColor: Colors.yellow,
@@ -72,13 +78,13 @@ class _JenaijamaisState extends State<Jenaijamais> {
                           ),
                           ElevatedButton(
                             onPressed: () => ({
-                              widget.onChangedStep(
-                                  6, answer = "Cap", widget.compteur + 1),
+                              widget.onChangedStep(6, answer = "Je n'ai jamais",
+                                  widget.compteur + 1),
                             }),
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.yellow),
                             child: Text(
-                              "Cap".toUpperCase(),
+                              "Je n'ai jamais".toUpperCase(),
                               style: TextStyle(
                                 color: Colors.white,
                                 backgroundColor: Colors.yellow,

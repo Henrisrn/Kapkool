@@ -6,9 +6,13 @@ import 'package:flutter/src/widgets/framework.dart';
 
 class Actionouverite extends StatefulWidget {
   final Function(int, String, int) onChangedStep;
+  final List<String> Nomjoueur;
   final int compteur;
   const Actionouverite(
-      {super.key, required this.onChangedStep, required this.compteur});
+      {super.key,
+      required this.onChangedStep,
+      required this.compteur,
+      required this.Nomjoueur});
 
   @override
   State<Actionouverite> createState() => _ActionouveriteState();
@@ -18,6 +22,7 @@ class _ActionouveriteState extends State<Actionouverite> {
   String answer = "";
   @override
   Widget build(BuildContext context) {
+    print(widget.Nomjoueur);
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
@@ -49,6 +54,12 @@ class _ActionouveriteState extends State<Actionouverite> {
                         alignment: MainAxisAlignment.center,
                         overflowDirection: VerticalDirection.down,
                         children: [
+                          Text(widget.Nomjoueur.elementAt(
+                                  Random().nextInt(widget.Nomjoueur.length)) +
+                              " action ou vérité "),
+                          SizedBox(
+                            height: 20,
+                          ),
                           ElevatedButton(
                             onPressed: () => ({
                               widget.onChangedStep(

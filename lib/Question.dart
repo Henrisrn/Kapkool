@@ -8,11 +8,13 @@ class Question extends StatefulWidget {
   final Function(int, String, int) onChangedStep;
   final List<String> question;
   final int compteur;
+  final List<String> Nomjoueur;
   const Question(
       {super.key,
       required this.onChangedStep,
       required this.question,
-      required this.compteur});
+      required this.compteur,
+      required this.Nomjoueur});
 
   @override
   State<Question> createState() => _QuestionState();
@@ -22,6 +24,7 @@ class _QuestionState extends State<Question> {
   @override
   String answer = "";
   Widget build(BuildContext context) {
+    print(widget.Nomjoueur);
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
@@ -41,10 +44,13 @@ class _QuestionState extends State<Question> {
                 SizedBox(
                   height: 100,
                 ),
-                Center(child: Text("CAP OU PAS CAP")),
+                Center(child: Text("  CAP OU PAS CAP  ")),
                 SizedBox(height: 50),
-                Text(widget.question
-                    .elementAt((Random().nextInt(widget.question.length)))),
+                Text(widget.Nomjoueur.elementAt(
+                        Random().nextInt(widget.Nomjoueur.length)) +
+                    " tu n'as jamais " +
+                    widget.question
+                        .elementAt((Random().nextInt(widget.question.length)))),
                 SizedBox(
                   height: 250,
                 ),

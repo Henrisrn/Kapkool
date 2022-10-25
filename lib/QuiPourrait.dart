@@ -9,11 +9,13 @@ class QuiPourrait extends StatefulWidget {
   final Function(int, String, int) onChangedStep;
   final List<String> question;
   final int compteur;
+  final List<String> Nomjoueur;
   const QuiPourrait(
       {super.key,
       required this.onChangedStep,
       required this.question,
-      required this.compteur});
+      required this.compteur,
+      required this.Nomjoueur});
 
   @override
   State<QuiPourrait> createState() => _QuiPourraitState();
@@ -21,8 +23,10 @@ class QuiPourrait extends StatefulWidget {
 
 class _QuiPourraitState extends State<QuiPourrait> {
   String answer = "";
+
   @override
   Widget build(BuildContext context) {
+    print(widget.Nomjoueur);
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
@@ -59,34 +63,19 @@ class _QuiPourraitState extends State<QuiPourrait> {
                           ElevatedButton(
                             onPressed: () => ({
                               widget.onChangedStep(
-                                  3, answer = "Pas Cap", widget.compteur + 1),
+                                  6, answer = "Roulette", widget.compteur + 1),
                             }),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.yellow,
                             ),
                             child: Text(
-                              "Pas Cap".toUpperCase(),
+                              "Roulette".toUpperCase(),
                               style: TextStyle(
                                 color: Colors.white,
                                 backgroundColor: Colors.yellow,
                               ),
                             ),
                           ),
-                          ElevatedButton(
-                            onPressed: () => ({
-                              widget.onChangedStep(
-                                  6, answer = "Cap", widget.compteur + 1),
-                            }),
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.yellow),
-                            child: Text(
-                              "Cap".toUpperCase(),
-                              style: TextStyle(
-                                color: Colors.white,
-                                backgroundColor: Colors.yellow,
-                              ),
-                            ),
-                          )
                         ]))
               ],
             );
