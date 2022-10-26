@@ -8,6 +8,7 @@ import 'package:kapkool/Cestun10.dart';
 import 'package:kapkool/DBConnection.dart';
 import 'package:kapkool/Home.dart';
 import 'package:kapkool/Jenaijamais.dart';
+import 'package:kapkool/Partiefini.dart';
 import 'package:kapkool/Question.dart';
 import 'package:kapkool/QuiPourrait.dart';
 import 'package:kapkool/Roulette.dart';
@@ -32,8 +33,19 @@ class _GuestState extends State<Guest> {
     "Quipourrait",
     "Cap"
   ];
-  List<String> joueur = ["Henri"];
+  String sortie = "";
+  List<String> joueur = [];
   String answer = "";
+  bool Partiefinie(List<List<String>> lis) {
+    bool res = false;
+    for (List<String> i in lis) {
+      if (i.length == 0) {
+        res = true;
+      }
+    }
+    return res;
+  }
+
   void initState() {
     // ignore: todo
     // TODO: implement initState
@@ -41,54 +53,43 @@ class _GuestState extends State<Guest> {
 
     DBConnection coll = new DBConnection(collec);
     coll.dbconnect.then(((question) => setState(() => _widget.addAll([
-          Home(
-              onChangedStep: (indexx, value) => setState(() {
-                    index = indexx;
-                    joueur = value;
-                  })),
+          Partiefinie(question)
+              ? PartieFinie()
+              : Home(
+                  onChangedStep: (indexx, value) => setState(() {
+                        index = indexx;
+                        for (String i in value) {
+                          joueur.add((i + "  "));
+                        }
+                      })),
           Cestun10(
-              compteur: widget.compteur,
               Nomjoueur: joueur,
               quest: question.elementAt(0),
-              onChangedStep: (indexx, res, cpp) => setState(() {
+              onChangedStep: (indexx) => setState(() {
                     index = indexx;
-                    answer = res;
-                    widget.compteur = cpp + 1;
                   })),
           Question(
-              compteur: widget.compteur,
               Nomjoueur: joueur,
               question: question.elementAt(5),
-              onChangedStep: (indexx, answerr, cpp) => setState(() {
+              onChangedStep: (indexx) => setState(() {
                     index = indexx;
-                    answer = answerr;
-                    widget.compteur = cpp + 1;
                   })),
           QuiPourrait(
-              compteur: widget.compteur,
               Nomjoueur: joueur,
               question: question.elementAt(4),
-              onChangedStep: (indexx, answerr, cpp) => setState(() {
+              onChangedStep: (indexx) => setState(() {
                     index = indexx;
-                    answer = answerr;
-                    widget.compteur = cpp + 1;
                   })),
           Jenaijamais(
-              compteur: widget.compteur,
               Nomjoueur: joueur,
               question: question.elementAt(3),
-              onChangedStep: (indexx, answerr, cpp) => setState(() {
+              onChangedStep: (indexx) => setState(() {
                     index = indexx;
-                    answer = answerr;
-                    widget.compteur = cpp + 1;
                   })),
           Actionouverite(
-              compteur: widget.compteur,
               Nomjoueur: joueur,
-              onChangedStep: (indexx, answerr, cpp) => setState(() {
+              onChangedStep: (indexx) => setState(() {
                     index = indexx;
-                    answer = answerr;
-                    widget.compteur = cpp + 1;
                   })),
           Roulette(
               onChangedStep: (indexx) => setState(() {

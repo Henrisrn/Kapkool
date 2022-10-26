@@ -42,7 +42,12 @@ dependencies:
   rxdart: ^0.27.5
   path_provider: ^2.0.11
   mongo_dart: ^0.7.4+1
+  flutter_launcher_icons: ^0.10.0
 
+flutter_icons:
+  android: "launcher_icon" 
+  ios: true
+  image_path: "Assets/kapkool_logo_2-removebg-preview_1 (1).png" 
 
 dev_dependencies:
   flutter_test:

@@ -52,13 +52,13 @@ class _VeriteState extends State<Verite> {
                         children: [
                           ElevatedButton(
                             onPressed: () => ({
-                              widget.onChangedStep(6),
+                              widget.onChangedStep((Random().nextInt(5) + 1)),
                             }),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.yellow,
                             ),
                             child: Text(
-                              "Tu fais l'action".toUpperCase(),
+                              "Flemme de dire la vérité".toUpperCase(),
                               style: TextStyle(
                                 color: Colors.white,
                                 backgroundColor: Colors.yellow,
@@ -72,7 +72,7 @@ class _VeriteState extends State<Verite> {
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.yellow),
                             child: Text(
-                              "Tu NE fais pas l'action".toUpperCase(),
+                              "Tu dis la vérité".toUpperCase(),
                               style: TextStyle(
                                 color: Colors.white,
                                 backgroundColor: Colors.yellow,
