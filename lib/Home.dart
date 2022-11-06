@@ -33,10 +33,23 @@ class _HomeState extends State<Home> {
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
-              backgroundColor: Colors.yellow[400],
-              title: const Center(child: Text("Welcome")),
-              elevation: 0,
-            ),
+                backgroundColor: Colors.yellow[400],
+                title: const Center(child: Text("Welcome")),
+                elevation: 0,
+                actions: <Widget>[
+                  Padding(
+                      padding: EdgeInsets.only(right: 20.0),
+                      child: GestureDetector(
+                        onTap: () {},
+                        child: TextButton(
+                            onPressed: () => (widget.onChangedStep(9, [""])),
+                            child: Text(
+                              "Ajouter une question",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 18),
+                            )),
+                      )),
+                ]),
             body: OrientationBuilder(
                 builder: (BuildContext context, Orientation orientation) {
               return Center(
@@ -307,8 +320,10 @@ class _HomeState extends State<Home> {
                           joueur.add(joueur9),
                           joueur.add(joueur10),
                           joueur.removeWhere((element) => element.length == 0),
-                          widget.onChangedStep(
-                              (Random().nextInt(5) + 1), joueur),
+                          joueur.length == 0
+                              ? null
+                              : widget.onChangedStep(
+                                  (Random().nextInt(5) + 1), joueur),
                         }),
                         style: ElevatedButton.styleFrom(
                             primary: Theme.of(context).primaryColor,

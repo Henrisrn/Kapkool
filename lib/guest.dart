@@ -4,8 +4,10 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:kapkool/Action.dart';
 import 'package:kapkool/Actionouverite.dart';
+import 'package:kapkool/Ajouterunequestion.dart';
 import 'package:kapkool/Cestun10.dart';
 import 'package:kapkool/DBConnection.dart';
+import 'package:kapkool/Form2.dart';
 import 'package:kapkool/Home.dart';
 import 'package:kapkool/Jenaijamais.dart';
 import 'package:kapkool/Partiefini.dart';
@@ -46,66 +48,80 @@ class _GuestState extends State<Guest> {
     return res;
   }
 
+  List<String> questiondejafaite = [];
   void initState() {
     // ignore: todo
     // TODO: implement initState
     super.initState();
 
     DBConnection coll = new DBConnection(collec);
-    coll.dbconnect.then(((question) => setState(() => _widget.addAll([
-          Partiefinie(question)
-              ? PartieFinie()
-              : Home(
-                  onChangedStep: (indexx, value) => setState(() {
-                        index = indexx;
-                        for (String i in value) {
-                          joueur.add((i + "  "));
-                        }
-                      })),
-          Cestun10(
-              Nomjoueur: joueur,
-              quest: question.elementAt(0),
-              onChangedStep: (indexx) => setState(() {
-                    index = indexx;
-                  })),
-          Question(
-              Nomjoueur: joueur,
-              question: question.elementAt(5),
-              onChangedStep: (indexx) => setState(() {
-                    index = indexx;
-                  })),
-          QuiPourrait(
-              Nomjoueur: joueur,
-              question: question.elementAt(4),
-              onChangedStep: (indexx) => setState(() {
-                    index = indexx;
-                  })),
-          Jenaijamais(
-              Nomjoueur: joueur,
-              question: question.elementAt(3),
-              onChangedStep: (indexx) => setState(() {
-                    index = indexx;
-                  })),
-          Actionouverite(
-              Nomjoueur: joueur,
-              onChangedStep: (indexx) => setState(() {
-                    index = indexx;
-                  })),
-          Roulette(
-              onChangedStep: (indexx) => setState(() {
-                    index = indexx;
-                  })),
-          Actionnio(
-              onChangedStep: (indexx) => setState(() {
-                    index = indexx;
-                  }),
-              question: question.elementAt(1)),
-          Verite(
-              onChangedStep: (indexx) => setState(() {
-                    index = indexx;
-                  }),
-              question: question.elementAt(2)),
-        ]))));
+    coll.dbconnect.then(((question) => setState(() {
+          print(question);
+          _widget.addAll([
+            Partiefinie(question)
+                ? PartieFinie()
+                : Home(
+                    onChangedStep: (indexx, value) => setState(() {
+                          index = indexx;
+                          for (String i in value) {
+                            joueur.add((i + "  "));
+                          }
+                        })),
+            Cestun10(
+                questiondejafait: questiondejafaite,
+                Nomjoueur: joueur,
+                quest: question.elementAt(0),
+                onChangedStep: (indexx, value) => setState(() {
+                      index = indexx;
+                    })),
+            Question(
+                questiondejafait: questiondejafaite,
+                Nomjoueur: joueur,
+                question: question.elementAt(5),
+                onChangedStep: (indexx, value) => setState(() {
+                      index = indexx;
+                    })),
+            QuiPourrait(
+                questiondejafait: questiondejafaite,
+                Nomjoueur: joueur,
+                question: question.elementAt(4),
+                onChangedStep: (indexx, value) => setState(() {
+                      index = indexx;
+                    })),
+            Jenaijamais(
+                questiondejafait: questiondejafaite,
+                Nomjoueur: joueur,
+                question: question.elementAt(3),
+                onChangedStep: (indexx, value) => setState(() {
+                      index = indexx;
+                    })),
+            Actionouverite(
+                Nomjoueur: joueur,
+                onChangedStep: (indexx) => setState(() {
+                      index = indexx;
+                    })),
+            Roulette(
+                onChangedStep: (indexx) => setState(() {
+                      index = indexx;
+                    })),
+            Actionnio(
+                questiondejafait: questiondejafaite,
+                onChangedStep: (indexx, value) => setState(() {
+                      index = indexx;
+                    }),
+                question: question.elementAt(1)),
+            Verite(
+                questiondejafait: questiondejafaite,
+                onChangedStep: (indexx, value) => setState(() {
+                      index = indexx;
+                    }),
+                question: question.elementAt(2)),
+            Form22(
+                onChangedStep: (indexx) => setState(() {
+                      index = indexx;
+                    }))
+          ]);
+        })));
   }
 
   @override
@@ -115,7 +131,8 @@ class _GuestState extends State<Guest> {
       child: _widget.length == 0
           ? SafeArea(
               child: Scaffold(
-              body: Center(child: Text("Loading")),
+              body: Center(
+                  child: Text("Loading", style: TextStyle(fontSize: 30))),
             ))
           : _widget.elementAt(index),
     );

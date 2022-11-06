@@ -6,12 +6,12 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:kapkool/DBConnection.dart';
 
-class Cestun10 extends StatefulWidget {
+class Tuprefere extends StatefulWidget {
   final Function(int, List<String>) onChangedStep;
   List<String> Nomjoueur;
   final List<String> quest;
   List<String> questiondejafait;
-  Cestun10(
+  Tuprefere(
       {super.key,
       required this.onChangedStep,
       required this.quest,
@@ -19,16 +19,16 @@ class Cestun10 extends StatefulWidget {
       required this.questiondejafait});
 
   @override
-  State<Cestun10> createState() => _Cestun10State();
+  State<Tuprefere> createState() => _TuprefereState();
 }
 
-class _Cestun10State extends State<Cestun10> {
+class _TuprefereState extends State<Tuprefere> {
   @override
   String res = "";
   Widget build(BuildContext context) {
     if (widget.quest.length == 0) {
       return widget.onChangedStep(
-          (Random().nextInt(5) + 1), widget.questiondejafait);
+          (Random().nextInt(6) + 1), widget.questiondejafait);
     } else {
       String text =
           widget.quest.elementAt((Random().nextInt(widget.quest.length)));
@@ -44,7 +44,7 @@ class _Cestun10State extends State<Cestun10> {
                       (widget.onChangedStep(0, widget.questiondejafait)),
                 ),
                 backgroundColor: Colors.yellow[400],
-                title: const Center(child: Text("  C'est un 10 mais : ")),
+                title: const Center(child: Text("  Tu préfère : ")),
                 elevation: 0,
               ),
               body: OrientationBuilder(
@@ -59,7 +59,7 @@ class _Cestun10State extends State<Cestun10> {
                           child: Text(
                         widget.Nomjoueur.elementAt(
                                 Random().nextInt(widget.Nomjoueur.length)) +
-                            " C'est un 10 MAIS ",
+                            " Tu préfère ",
                         style: TextStyle(fontSize: 30, color: Colors.white),
                       )),
                       SizedBox(height: 50),

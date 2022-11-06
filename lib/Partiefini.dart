@@ -12,8 +12,9 @@ class PartieFinie extends StatefulWidget {
 class _PartieFinieState extends State<PartieFinie> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SafeArea(
+        child: Container(
       child: Text("La partie est fini"),
-    );
+    ));
   }
 }

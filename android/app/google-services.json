@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:262061240408:android:572f17712f7efbfa9cda2d",
         "android_client_info": {
-          "package_name": "com.example.kapkool"
+          "package_name": "com.appfun.kapkool"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "262061240408-9c99mbcddjkfaqr1tia5il9dgjroro96.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.kapkool",
+            "package_name": "com.appfun.kapkool",
             "certificate_hash": "733a2fd6b9aa28471c94066ec24307591fe81742"
           }
         },
